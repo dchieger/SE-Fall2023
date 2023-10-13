@@ -1,5 +1,5 @@
 """
-URL configuration for studio888 project.
+URL configuration for webProject project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -21,20 +21,14 @@ from authentication.views import Signup, Signin, Profile
 from django.contrib import admin
 from django.urls import path
 from authentication import views
-<<<<<<< HEAD
-=======
 from store.views import order_detail, create_order
->>>>>>> david
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/', Signup.as_view(), name='signup'),
     path('signin/', Signin.as_view(), name='signin'),
     path('profile/', views.Profile, name='profile'),
-<<<<<<< HEAD
-]
-=======
     path('order/<int:order_id>/', order_detail, name='order_detail'),
     path('create_order/', create_order, name='create_order'),
 ]
->>>>>>> david
+

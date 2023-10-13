@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-from django.shortcuts import render
-
-# Create your views here.
-=======
 from django.utils import timezone
 from django.shortcuts import render
 from .models import Order, OrderItem
@@ -48,4 +43,3 @@ def create_order(request):
         users = User.objects.all()
         products = Product.objects.all()
         return render(request, 'create_order.html', {'users': users, 'products': products})
->>>>>>> david
