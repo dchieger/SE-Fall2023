@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Order</title>
+</head>
+<body>
+    <h1>Create Order</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="user">User:</label>
+        <select name="user" id="user">
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="products">Products:</label>
+        <select name="products" id="products" multiple>
+            {% for product in products %}
+                <option value="{{ product.id }}">{{ product.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="address_line1">Address Line 1:</label>
+        <input type="text" name="address_line1" id="address_line1">
+        <br>
+        <label for="address_line2">Address Line 2:</label>
+        <input type="text" name="address_line2" id="address_line2">
+        <br>
+        <label for="city">City:</label>
+        <input type="text" name="city" id="city">
+        <br>
+        <label for="state">State:</label>
+        <input type="text" name="state" id="state">
+        <br>
+        <label for="zip">Zip:</label>
+        <input type="text" name="zip" id="zip">
+        <br>
+        <label for="country">Country:</label>
+        <input type="text" name="country" id="country">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

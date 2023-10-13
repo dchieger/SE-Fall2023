@@ -17,10 +17,24 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False)
     order_number = models.CharField(max_length=13, unique=True, blank=True)
+<<<<<<< HEAD
 
     def save(self, *args, **kwargs):
         if not self.order_number:
             self.order_number = f"ASTRO#{random.randint(100000, 999999)}"
+=======
+    address_line1 = models.CharField(max_length=50, blank=True)
+    address_line2 = models.CharField(max_length=50, blank=True)
+    city = models.CharField(max_length=50, blank= True)
+    state = models.CharField(max_length=50, blank= True)
+    zip = models.CharField(max_length=10, blank=True)
+    country = models.CharField(max_length=50, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.order_number:
+            self.order_number = random.randint(100000, 999999)
+            self.id = self.order_number  # Set the id field to the order_number value
+>>>>>>> david
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -38,4 +52,20 @@ class Customer(models.Model):
     email = models.EmailField()
 
     def __str__(self):
+<<<<<<< HEAD
         return self.name
+=======
+        return self.name
+
+"""
+I debated making this into a simple function but I think the data model is a better solution.
+Using a data model we have the ability to go back edit the discount code or add more codes.
+Using a function to generate the codes would not actually store them anywhere. and they would have
+to be evaluated by the view at run time.
+"""
+class DCode(models.Model):
+    code = models.CharField(max_length=24)
+    discount = models.DecimalField(max_digits=10, decimal_places=2)
+    def __str__(self):
+        return self.code
+>>>>>>> david
