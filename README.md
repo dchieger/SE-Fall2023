@@ -1,2 +1,4 @@
 # SE-Fall2023
-Django, MySQL, Vue. Full Stack E-Commerce Store
+
+“Intelligence is the ability to avoid doing work, yet getting the work done.”
+― Linus Torvalds 
