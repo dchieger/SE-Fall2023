@@ -62,9 +62,18 @@ def payment_process(request):
         return render(request, 'payment/process.html', locals())
 
 
-def payment_completed(request):
-    return render(request, 'payment/completed.html')
 
+def payment_completed(request):
+    order_id = request.session.get('order_id')
+    if order_id is None:
+        # Handle the case where there is no order_id in the session
+        pass
+    order = get_object_or_404(Order, id=order_id)
+    for item in order.items.all():
+        product = item.product
+        product.stock -= item.quantity
+        product.save()
+    return render(request, 'payment/completed.html')
 
 def payment_canceled(request):
     return render(request, 'payment/canceled.html')

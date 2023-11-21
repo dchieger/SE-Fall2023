@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+    container_name: my_django_app
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - celery_worker
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  celery_worker:
+    build:
+      context: .
+    container_name: celery_worker
+    environment:
+      - DJANGO_SETTINGS_MODULE=myshop.settings
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - redis
+
+  flower:
+    image: mher/flower
+    container_name: flower
+    ports:
+      - "5555:5555"  # Flower web UI port
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0  # Point to your Celery broker URL
+    depends_on:
+      - redis
+
+networks:
+  default:
+
+
+scp /Users/dhieger/Desktop/SE-Fall2023-main.zip root@64.227.103.105:/

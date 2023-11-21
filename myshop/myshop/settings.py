@@ -119,6 +119,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
@@ -147,6 +148,6 @@ STRIPE_WEBHOOK_SECRET = 'whsec_86eb704832abd23d1e91e2449264a83307950b145e11f3589
 
 
 # Redis settings
-REDIS_HOST = 'localhost'
+REDIS_HOST = '127.0.0.1'
 REDIS_PORT = 6379
 REDIS_DB = 1

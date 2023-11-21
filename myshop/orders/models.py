@@ -8,6 +8,9 @@ from coupons.models import Coupon
 
 
 class Order(models.Model):
+
+    TAX_RATE = Decimal('0.00825')
+
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
@@ -47,7 +50,9 @@ class Order(models.Model):
 
     def get_total_cost(self):
         total_cost = self.get_total_cost_before_discount()
-        return total_cost - self.get_discount()
+        total_after_discount = total_cost - self.get_discount()
+        tax_amount = total_after_discount * self.TAX_RATE
+        return total_after_discount + tax_amount
 
     def get_stripe_url(self):
         if not self.stripe_id:

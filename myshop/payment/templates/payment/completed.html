@@ -5,4 +5,13 @@
 {% block content %}
   <h1>Your payment was successful</h1>
   <p>Your payment has been processed successfully.</p>
+
+  <h2>Your order:</h2>
+  {% for item in order.items.all %}
+    <div>
+      <h3>{{ item.product.name }}</h3>
+      <p>Quantity: {{ item.quantity }}</p>
+      <p>Price: {{ item.price }}</p>
+    </div>
+  {% endfor %}
 {% endblock %}

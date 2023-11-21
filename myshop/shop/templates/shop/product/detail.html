@@ -15,6 +15,7 @@
       </a>
     </h2>
     <p class="price">${{ product.price }}</p>
+    <p class="stock">Stock: {{ product.stock }}</p>  <!-- Display the product stock -->
     <form action="{% url "cart:cart_add" product.id %}" method="post">
       {{ cart_product_form }}
       {% csrf_token %}
